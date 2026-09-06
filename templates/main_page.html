@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чаты</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_page.css') }}">
+</head>
+<body>
+  
+    <div id="main_page">
+        <header id="header_main_page">
+            <input type="email" id="find_user_email" placeholder="Введите почту собеседника" name="finder_user_email"  required>      
+            <button class="find_user_btn" onclick="find_user()">Найти человека</button>
+        </header>
+        <a id="chat_new" target="_blank"></a>
+        <h3>Ваши чаты:</h3>
+        <div class="chats_container" id="chats_container"></div>
+    </div>
+
+    <div id="chat_none">
+        <h1 class="h1_chat_none">Выберите чат!</h1>
+    </div>
+
+    <div id="chat_user">
+        <details class="header">
+            <summary id="header"></summary>
+            <p id="for_email"></p>
+        </details>
+    <div class="messages_container" id="messages_container"></div>
+
+    <div class="container_send_buttons">
+        <textarea id="send_mes_inp" type="text" placeholder="Текст сообщения" name="send_mes_input"></textarea>
+        <input type="file" id="user_file" multiple>
+        <button id="send_mes_but" onclick="send_message()"></button>
+    </div>
+    </div>
+    <button id="mobileBackBtn" class="mobile-back-btn">←</button>
+    
+    <script src="{{ url_for('static', filename='js/main_page.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mobilka.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >Регистрация</title>
+    <style>
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f5f5f5;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+}
+
+.input_container {
+  max-width: 420px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 2rem 2rem 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.input_container input[type="text"],
+.input_container input[type="email"],
+.input_container input[type="number"],
+.input_container input[type="password"] {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input_container input[type="number"] {
+    -moz-appearance: textfield;
+    }
+.input_container input[type="number"]::-webkit-outer-spin-button,
+.input_container input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input_container input:focus {
+  border-color: #2c2c2c;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.02);
+}
+.input_container input::placeholder {
+  color: #b0b0b0;
+  font-weight: 300;
+  opacity: 1;
+}
+
+.input_container .btn {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  margin-top: 0.5rem;
+  background-color: #1a1a1a; 
+  color: #ffffff;
+  border: none;
+  border-radius: 40px;         
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.input_container .btn:hover {
+  background-color: #333333;
+}
+
+.input_container .btn:active {
+  transform: scale(0.98);
+}
+
+#email_btn {
+  display: block;
+  width: fit-content;
+  margin: 1.2rem auto 0;       
+  padding: 0.6rem 1.8rem;
+  background-color: transparent;
+  border: 1.5px solid #2c2c2c;
+  border-radius: 40px;
+  color: #2c2c2c;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#email_btn:hover {
+  background-color: #2c2c2c;
+  color: #ffffff;
+}
+
+#email_btn:active {
+  transform: scale(0.96);
+}
+</style>
+</head>
+<body>
+    <div class="input_container">
+         <form  method="post">
+            <input placeholder="Ваше имя" type="text" name="first_name" id="first_name" required>
+            <input placeholder="Ваша фамилия" type="text" name="last_name" id="last_name" required>
+            <input placeholder="Ваша почта" type="email" name="email" id="email" required>
+            <input placeholder="Код с почты" type="number" name="email_chek" id="email_chek" required>
+            <input placeholder="Ваш пароль" type="text" name="password" id="password" required>
+            <input type="submit" class="btn" value="Зарегистироваться">
+        </form>
+
+        <button id="email_btn" onclick="send_code()">Отправить код</button>
+    </div>
+
+    <p>
+        {{ code_states }}
+    </p>
+
+    <script>
+        const email_btn = document.getElementById('email');
+
+        function send_code(){
+            let in_email_btn = email_btn.value;
+            fetch(`/email_chek/${in_email_btn}`)
+        }
+    </script>
+</body>
+</html>
